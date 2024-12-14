@@ -74,11 +74,15 @@ public:
      * @return Error if something was wrong and ALL_OK if all good
      */
     ErrorList begin();
+
+
 /**
  * ____________________________________________________________________________________________________________________
  * _______________________________ Busines logic ______________________________________________________________________
  * ____________________________________________________________________________________________________________________
  */
+
+
 
     /**
      * ----------------------------------------------------------------------------------------------------------------
@@ -108,6 +112,8 @@ public:
      * @warning Fuction type void and cannot return valuer
      * @warning Fuction cannon take parameters
      * 
+     * @param function it`s a void type function what was set as a press function
+     * 
      * @return Error if something was wrong and ALL_OK if all good
      */
     ErrorList addPressFunction(void (*function)(void));
@@ -122,6 +128,36 @@ public:
     ErrorList removePressFunction();
 
 
+/**
+ * ____________________________________________________________________________________________________________________
+ * _______________________________ GETTERS and SETTERS ________________________________________________________________
+ * ____________________________________________________________________________________________________________________
+ */
+
+
+
+    /**
+     * ----------------------------------------------------------------------------------------------------------------
+     * --------------------------- Setters ----------------------------------------------------------------------------
+     * ----------------------------------------------------------------------------------------------------------------
+     */
+
+
+    /**
+     * @brief Set button pin
+     * 
+     * @return Error if something was wrong and ALL_OK if all good
+     */
+    ErrorList setPin(uint8_t pin);
+
+    /**
+     * @brief Set work type button
+     * 
+     * @return Error if something was wrong and ALL_OK if all good
+     */
+    ErrorList setType(BTN_TYPE type);
+
+
 private:
 
 /**
@@ -129,6 +165,13 @@ private:
  * _______________________________ Service logic ______________________________________________________________________
  * ____________________________________________________________________________________________________________________
  */
+
+/**
+ * @brief Use to safe run press functions
+ * 
+ * @return Error if something was wrong and ALL_OK if all good
+ */
+ErrorList doPressFunction();
 
 
 };
