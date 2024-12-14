@@ -1,32 +1,4 @@
-#ifndef BTN_HEADER
-#define BTN_HEADER
-#include "setting.h"
-
-/**
- * Don`t have interupt now but in future version i add them (I promiss)
- */
-
-
-
-/**
- * @brief Class to more easy and comfortable use button
- * 
- * @warning Important use begin() after declarate (used constrancts) because him setup all parameters
- * 
- * 
- * @version 1.0
- * @author Igor Co (or IgorIoT13)
- */
-class Btn{
-private:
-    BTN_TYPE type;
-    uint8_t pin;
-    bool pressFlag;
-    bool changeStateFlag;
-
-    void (*onPress)(void);
-    
-public:
+#include "btn.h"
     /**
      * ----------------------------------------------------------------------------------------------------------------
      * --------------------------- Consturctors -----------------------------------------------------------------------
@@ -34,27 +6,19 @@ public:
      */
 
     
-    /**
-     * @brief Default consturt
-     * @note Use him to declarate button
-     * @warning `begin()` don't work if you only don't use manual set pin and type
-     */
-    Btn();
+    Btn::Btn(){
+        this->init();
+    }
 
-    /**
-     * @brief Set only pin 
-     * @note Type was set automatic (`PULL_UP_TYPE`)
-     * @param pin it's GPIO pin where connected button
-     */
-    Btn(uint8_t pin);
 
-    /**
-     * @brief Set all parameters for button
-     * 
-     * @param pin it's GPIO pin where connected button
-     * @param type it's work type of button such as PULL_(UP/DOWN)
-     */
-    Btn(uint8_t pin, BTN_TYPE type);
+    Btn::Btn(uint8_t pin){
+
+    }
+
+
+    Btn::Btn(uint8_t pin, BTN_TYPE type){
+
+    }
 
 
     /**
@@ -64,24 +28,10 @@ public:
      */
 
 
-    /**
-     * @brief Use in construct to more easy change parameters if need
-     * @warning Better use construct (it's more correct)
-     * 
-     * @param pin it's GPIO pin where connected button
-     * @param type it's work type of button such as PULL_(UP/DOWN)
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE);
+    ErrorList Btn::init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE){}
 
-    /**
-     * @brief Use begin to setup all parameters
-     * @warning Important to use
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList begin();
+
+    ErrorList Btn::begin(){}
 
 
 /**
@@ -98,17 +48,7 @@ public:
      * ----------------------------------------------------------------------------------------------------------------
      */
 
-
-    /**
-     * @brief Monitor changes and if some changed set flag(pressFlag)
-     * @warning If begin() isn't used - don't work
-     * 
-     * @see btn_tick()
-     * @see press_tick()
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList tick();
+    ErrorList Btn::tick(){}
 
     
     /**
@@ -118,25 +58,10 @@ public:
      */
 
 
-    /**
-     * @brief Add function what works when button is active
-     * @warning Fuction type void and cannot return valuer
-     * @warning Fuction cannon take parameters
-     * 
-     * @param function it's a void type function what was set as a press function
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList addPressFunction(void (*function)(void));
+    ErrorList Btn::addPressFunction(void (*function)(void)){}
 
 
-    /**
-     * @brief Remove press fuction
-     * @note If press function isn't was add, do nothing.
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList removePressFunction();
+    ErrorList Btn::removePressFunction(){}
 
 
 /**
@@ -154,22 +79,12 @@ public:
      */
 
 
-    /**
-     * @brief Set button pin
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList setPin(uint8_t pin);
-
-    /**
-     * @brief Set work type button
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList setType(BTN_TYPE type);
+    ErrorList Btn::setPin(uint8_t pin){}
 
 
-private:
+    ErrorList Btn::setType(BTN_TYPE type){}
+
+
 
 /**
  * ____________________________________________________________________________________________________________________
@@ -184,12 +99,7 @@ private:
      */
 
 
-    /**
-     * @brief Use to safe run press functions
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList doPressFunction();
+    ErrorList Btn::doPressFunction(){}
 
 
     /**
@@ -198,25 +108,8 @@ private:
      * ----------------------------------------------------------------------------------------------------------------
      */
 
+    ErrorList Btn::btn_tick(){}
 
-    /**
-     * @brief Use to common button
-     * @note State it's flag to action i.e. the low state (in PULL_UP) is it flag to action
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList btn_tick();
+    ErrorList Btn::press_tick(){}
 
 
-    /**
-     * @brief Use to press button
-     * @note A change is an action, i.e. the transition from low to high was an action
-     * 
-     * @return Error if something was wrong and ALL_OK if all good
-     */
-    ErrorList press_tick();
-
-};
-
-
-#endif
