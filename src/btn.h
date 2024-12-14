@@ -22,6 +22,7 @@ private:
     BTN_TYPE type;
     uint8_t pin;
     bool pressFlag;
+    bool changeStateFlag;
 
     void (*onPress)(void);
     
@@ -86,7 +87,7 @@ public:
 
     /**
      * ----------------------------------------------------------------------------------------------------------------
-     * --------------------------- Tick fuctions ----------------------------------------------------------------------
+     * --------------------------- Tick fuction -----------------------------------------------------------------------
      * ----------------------------------------------------------------------------------------------------------------
      */
 
@@ -94,6 +95,9 @@ public:
     /**
      * @brief Monitor changes and if some changed set flag(pressFlag)
      * @warning If begin() isn`t used - don`t work
+     * 
+     * @see btn_tick()
+     * @see press_tick()
      * 
      * @return Error if something was wrong and ALL_OK if all good
      */
@@ -166,13 +170,44 @@ private:
  * ____________________________________________________________________________________________________________________
  */
 
-/**
- * @brief Use to safe run press functions
- * 
- * @return Error if something was wrong and ALL_OK if all good
- */
-ErrorList doPressFunction();
+    /**
+     * ----------------------------------------------------------------------------------------------------------------
+     * ---------------------------Service handler fuctions and checkers -----------------------------------------------
+     * ----------------------------------------------------------------------------------------------------------------
+     */
 
+
+    /**
+     * @brief Use to safe run press functions
+     * 
+     * @return Error if something was wrong and ALL_OK if all good
+     */
+    ErrorList doPressFunction();
+
+
+    /**
+     * ----------------------------------------------------------------------------------------------------------------
+     * --------------------------- Service Ticks fuctions -------------------------------------------------------------
+     * ----------------------------------------------------------------------------------------------------------------
+     */
+
+
+    /**
+     * @brief Use to common button
+     * @note State it`s flag to action i.e. the low state (in PULL_UP) is it flag to action
+     * 
+     * @return Error if something was wrong and ALL_OK if all good
+     */
+    ErrorList btn_tick();
+
+
+    /**
+     * @brief Use to press button
+     * @note A change is an action, i.e. the transition from low to high was an action
+     * 
+     * @return Error if something was wrong and ALL_OK if all good
+     */
+    ErrorList press_tick();
 
 };
 
