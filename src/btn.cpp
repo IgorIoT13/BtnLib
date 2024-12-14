@@ -139,6 +139,10 @@
     ErrorList Btn::setType(BTN_TYPE type){
         if(type != NULL_TYPE){
             this->type = type;
+            this->configPinout();
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
         }
     }
 
@@ -157,7 +161,14 @@
      */
 
 
-    ErrorList Btn::doPressFunction(){}
+    ErrorList Btn::doPressFunction(){
+        if(this->onPress != nullptr){
+            onPress();
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
+        }
+    }
 
 
     /**
