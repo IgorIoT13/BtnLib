@@ -12,5 +12,7 @@ typedef enum BTN_TYPE{
     NULL_TYPE
 }BTN_TYPE;
 
+#define MAX_PIN 40
+
 
 #endif

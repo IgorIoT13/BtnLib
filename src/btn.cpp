@@ -36,7 +36,7 @@
 
 
     ErrorList Btn::begin(){
-        if(this->pin != NULL){
+        if(this->pin != NULL && pin <= MAX_PIN){
             this->pin = pin;
             this->type = type;
 
@@ -48,6 +48,8 @@
 
             beginComplete = true;
             return ALL_OK;
+        }else if(pin > MAX_PIN){
+            return ERR_VALUER_UNCORECT;
         }else{
             return ERR_NULL_VALUER;
         }
@@ -72,9 +74,12 @@
 
         if(this->type == PRESS_PULL_DOWN_TYPE || this->type == PRESS_PULL_UP_TYPE){
             this->press_tick();
+        }else if(this->type == NULL_TYPE){
+            return ERR_NULL_VALUER;
         }else{
             this->btn_tick();
         }
+        return ALL_OK;
     }
 
     
@@ -85,10 +90,22 @@
      */
 
 
-    ErrorList Btn::addPressFunction(void (*function)(void)){}
+    ErrorList Btn::addPressFunction(void (*function)(void)){
+        if(function != nullptr){
+            this->onPress = function;
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
+        }
+    }
 
 
-    ErrorList Btn::removePressFunction(){}
+    ErrorList Btn::removePressFunction(){
+        if(this->onPress != nullptr){
+            this->onPress = nullptr;
+        }
+        return ALL_OK;
+    }
 
 
 /**
@@ -106,10 +123,24 @@
      */
 
 
-    ErrorList Btn::setPin(uint8_t pin){}
+    ErrorList Btn::setPin(uint8_t pin){
+        if(pin != NULL && pin <= MAX_PIN){
+            this->pin = pin;
+            this->configPinout();
+            return ALL_OK;
+        }else if(pin > MAX_PIN){
+            return ERR_VALUER_UNCORECT;
+        }else{ 
+            return ERR_NULL_VALUER;
+        }
+    }
 
 
-    ErrorList Btn::setType(BTN_TYPE type){}
+    ErrorList Btn::setType(BTN_TYPE type){
+        if(type != NULL_TYPE){
+            this->type = type;
+        }
+    }
 
 
 
