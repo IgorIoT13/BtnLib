@@ -31,6 +31,7 @@
     ErrorList Btn::init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE){
         this->pin = pin;
         this->type = type;
+        this->onPress = nullptr;
     }
 
 
