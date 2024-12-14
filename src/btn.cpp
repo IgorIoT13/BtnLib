@@ -12,12 +12,12 @@
 
 
     Btn::Btn(uint8_t pin){
-
+        this->init(pin);
     }
 
 
     Btn::Btn(uint8_t pin, BTN_TYPE type){
-
+        this->init(pin, type)
     }
 
 

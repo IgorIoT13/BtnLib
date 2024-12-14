@@ -71,7 +71,7 @@ public:
      * @param pin it's GPIO pin where connected button
      * @param type it's work type of button such as PULL_(UP/DOWN)
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE);
 
@@ -79,7 +79,7 @@ public:
      * @brief Use begin to setup all parameters
      * @warning Important to use
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList begin();
 
@@ -106,7 +106,7 @@ public:
      * @see btn_tick()
      * @see press_tick()
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList tick();
 
@@ -125,7 +125,7 @@ public:
      * 
      * @param function it's a void type function what was set as a press function
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList addPressFunction(void (*function)(void));
 
@@ -134,7 +134,7 @@ public:
      * @brief Remove press fuction
      * @note If press function isn't was add, do nothing.
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList removePressFunction();
 
@@ -157,14 +157,14 @@ public:
     /**
      * @brief Set button pin
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList setPin(uint8_t pin);
 
     /**
      * @brief Set work type button
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList setType(BTN_TYPE type);
 
@@ -187,7 +187,7 @@ private:
     /**
      * @brief Use to safe run press functions
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList doPressFunction();
 
@@ -203,7 +203,7 @@ private:
      * @brief Use to common button
      * @note State it's flag to action i.e. the low state (in PULL_UP) is it flag to action
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList btn_tick();
 
@@ -212,7 +212,7 @@ private:
      * @brief Use to press button
      * @note A change is an action, i.e. the transition from low to high was an action
      * 
-     * @return Error if something was wrong and ALL_OK if all good
+     * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList press_tick();
 
