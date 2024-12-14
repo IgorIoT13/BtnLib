@@ -6,7 +6,8 @@
 
 typedef enum BTN_TYPE{
     PULL_UP_TYPE,
-    PULL_DOWN_TYPE
+    PULL_DOWN_TYPE,
+    NULL_TYPE
 }BTN_TYPE;
 
 
