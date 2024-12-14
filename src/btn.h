@@ -25,6 +25,9 @@ private:
     bool changeStateFlag;
 
     void (*onPress)(void);
+
+    //Save flags
+    bool beginComplete;
     
 public:
     /**
@@ -215,6 +218,21 @@ private:
      * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList press_tick();
+
+
+    /**
+     * ----------------------------------------------------------------------------------------------------------------
+     * --------------------------- Service Ticks fuctions -------------------------------------------------------------
+     * ----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * @brief Use to setup pin 
+     * @note This function autonatic use inside variables for configurate pinout
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList configPinout();
 
 };
 

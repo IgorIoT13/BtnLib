@@ -17,7 +17,7 @@
 
 
     Btn::Btn(uint8_t pin, BTN_TYPE type){
-        this->init(pin, type)
+        this->init(pin, type);
     }
 
 
@@ -28,10 +28,29 @@
      */
 
 
-    ErrorList Btn::init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE){}
+    ErrorList Btn::init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE){
+        this->pin = pin;
+        this->type = type;
+    }
 
 
-    ErrorList Btn::begin(){}
+    ErrorList Btn::begin(){
+        if(this->pin != NULL){
+            this->pin = pin;
+            this->type = type;
+
+            ErrorList err = this->configPinout();
+
+            if(err != ALL_OK){
+                return err;
+            }
+
+            beginComplete = true;
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
+        }
+    }
 
 
 /**
@@ -48,7 +67,14 @@
      * ----------------------------------------------------------------------------------------------------------------
      */
 
-    ErrorList Btn::tick(){}
+    ErrorList Btn::tick(){
+
+        if(this->type == PRESS_PULL_DOWN_TYPE || this->type == PRESS_PULL_UP_TYPE){
+            this->press_tick();
+        }else{
+            this->btn_tick();
+        }
+    }
 
     
     /**
@@ -111,5 +137,9 @@
     ErrorList Btn::btn_tick(){}
 
     ErrorList Btn::press_tick(){}
+
+    ErrorList Btn::configPinout(){
+
+    }
 
 
