@@ -239,6 +239,28 @@
     }
 
 
+    bool Btn::pressType(){
+        if(this->type == PRESS_PULL_UP_TYPE || this->type == PRESS_PULL_DOWN_TYPE){
+            return this->pressFlag;
+        }else{
+            return false;
+        }
+    }
+
+
+    bool Btn::btnType(){
+        if(this->type == PULL_UP_TYPE || this->type == PULL_DOWN_TYPE){
+            bool result = this->pressFlag;
+            if(this->pressFlag){
+                this->pressFlag = false;
+            }
+            return result;
+        }else{
+            return false;
+        }
+    }
+
+
     ErrorList Btn::configPinout(){
         uint8_t pin_mode = 0;
 
