@@ -7,12 +7,12 @@
 
     
     Btn::Btn(){
-        this->init();
+        this->init(0, PULL_UP_TYPE);
     }
 
 
     Btn::Btn(uint8_t pin){
-        this->init(pin);
+        this->init(pin, PULL_UP_TYPE);
     }
 
 
@@ -28,15 +28,16 @@
      */
 
 
-    ErrorList Btn::init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE){
+    ErrorList Btn::init (uint8_t pin, BTN_TYPE type){
         this->pin = pin;
         this->type = type;
         this->onPress = nullptr;
+        return ALL_OK;
     }
 
 
     ErrorList Btn::begin(){
-        if(this->pin != NULL && pin <= MAX_PIN){
+        if(this->pin != 0 && pin <= MAX_PIN){
             this->pin = pin;
             this->type = type;
 
@@ -124,7 +125,7 @@
 
 
     ErrorList Btn::setPin(uint8_t pin){
-        if(pin != NULL && pin <= MAX_PIN){
+        if(pin != 0 && pin <= MAX_PIN){
             this->pin = pin;
             this->configPinout();
             return ALL_OK;
@@ -177,12 +178,18 @@
      * ----------------------------------------------------------------------------------------------------------------
      */
 
-    ErrorList Btn::btn_tick(){}
+    ErrorList Btn::btn_tick(){
+        return ALL_OK;
+    }
+    
 
-    ErrorList Btn::press_tick(){}
+    ErrorList Btn::press_tick(){
+        return ALL_OK;
+    }
+
 
     ErrorList Btn::configPinout(){
-
+        return ALL_OK;
     }
 
 

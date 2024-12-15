@@ -21,6 +21,7 @@ class Btn{
 private:
     BTN_TYPE type;
     uint8_t pin;
+    uint8_t delayTime;
     bool pressFlag;
     bool changeStateFlag;
 
@@ -28,6 +29,9 @@ private:
 
     //Save flags
     bool beginComplete;
+
+    //Timers variables
+    uint32_t bufer;
     
 public:
     /**
@@ -52,12 +56,20 @@ public:
     Btn(uint8_t pin);
 
     /**
-     * @brief Set all parameters for button
+     * @brief Set all(base) parameters for button
      * 
      * @param pin it's GPIO pin where connected button
      * @param type it's work type of button such as PULL_(UP/DOWN)
      */
     Btn(uint8_t pin, BTN_TYPE type);
+
+    /**
+     * @brief Set all parameters for button
+     * 
+     * @param pin it's GPIO pin where connected button
+     * @param type it's work type of button such as PULL_(UP/DOWN)
+     */
+    Btn(uint8_t pin, BTN_TYPE type, uint32_t delayTime);
 
 
     /**
@@ -76,7 +88,7 @@ public:
      * 
      * @return Error if something was wrong and `ALL_OK` if all good
      */
-    ErrorList init (uint8_t pin = NULL, BTN_TYPE type = PULL_UP_TYPE);
+    ErrorList init (uint8_t pin, BTN_TYPE type);
 
     /**
      * @brief Use begin to setup all parameters
@@ -112,6 +124,13 @@ public:
      * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList tick();
+
+    /**
+     * @brief Get true if button is active
+     * 
+     * @return True is button is active and false if not
+     */
+    bool Press();
 
     
     /**
@@ -218,6 +237,14 @@ private:
      * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList press_tick();
+
+
+    /**
+     * 
+     */
+    bool pressType();
+
+    bool btnType();
 
 
     /**
