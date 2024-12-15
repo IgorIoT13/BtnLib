@@ -91,9 +91,20 @@
 
     bool Btn::Press(){
         if(this->type == PRESS_PULL_UP_TYPE || this->type == PRESS_PULL_DOWN_TYPE){
-            return this->pressType();
+            bool press_state = this->pressType();
+
+            if(!changeStateFlag && press_state != false){
+                doPressFunction();
+            }
+            changeStateFlag = press_state;
+
+            return press_state;
         }else{
-            return this->btnType();
+            bool btn_state = this->btnType();
+            if(btn_state){
+                this->doPressFunction();
+            }
+            return btn_state;
         }
     }
 
@@ -273,9 +284,9 @@
         uint8_t pin_mode = 0;
 
         if(this->type == PULL_UP_TYPE || this->type == PRESS_PULL_UP_TYPE){
-            pin_mode = PULLUP;
+            pin_mode = INPUT_PULLUP;
         }else if(this->type == PULL_DOWN_TYPE || this->type == PRESS_PULL_DOWN_TYPE){
-            pin_mode = PULLDOWN;
+            pin_mode = INPUT_PULLDOWN;
         }else{ 
             return ERR_NULL_VALUER;
         }
@@ -283,7 +294,8 @@
 
         if(pin != 0 && pin <= MAX_PIN){
             this->pin = pin;
-            pinMode(this->pin, pin_mode);
+            pinMode(this->pin, OUTPUT);
+            digitalWrite(this->pin, pin_mode);
             return ALL_OK;
         }else if(pin > MAX_PIN){
             return ERR_VALUER_UNCORECT;
