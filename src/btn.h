@@ -27,6 +27,9 @@ private:
 
     void (*onPress)(void);
 
+    void (*PressOn)(void);
+    void (*PressOff)(void);
+
     //Save flags
     bool beginComplete;
 
