@@ -89,6 +89,14 @@
         return ALL_OK;
     }
 
+    bool Btn::Press(){
+        if(this->type == PRESS_PULL_UP_TYPE || this->type == PRESS_PULL_DOWN_TYPE){
+            return this->pressType();
+        }else{
+            return this->btnType();
+        }
+    }
+
     
     /**
      * ----------------------------------------------------------------------------------------------------------------
