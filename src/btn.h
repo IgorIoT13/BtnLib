@@ -252,6 +252,7 @@ private:
     /**
      * @brief Use to press button
      * @note A change is an action, i.e. the transition from low to high was an action
+     * @note Delay time doesn't work in this button type because tick must all time check button
      * 
      * @return Error if something was wrong and `ALL_OK` if all good
      */
@@ -260,7 +261,6 @@ private:
 
     /**
      * @brief Need to check press button
-     * @note Delay time doesn't work in this button type because tick must all time check button
      * 
      * @return True if button is active else false 
      */

@@ -187,11 +187,51 @@
      */
 
     ErrorList Btn::btn_tick(){
+        if(millis() - this->bufer >= this->delayTime){
+            this->bufer = millis();
+            switch(this->type){
+                case PULL_UP_TYPE:
+                    if(!digitalRead(this->pin)){
+                        this->pressFlag = true;
+                    }
+                    break;
+
+                case PULL_DOWN_TYPE:
+                    if(digitalRead(this->pin)){
+                        this->pressFlag = true;
+                    }
+                    break;
+                default:
+                    return ERR_VALUER_UNCORECT;
+                    break;
+            }
+        }
         return ALL_OK;
     }
 
 
     ErrorList Btn::press_tick(){
+
+        switch(this->type){
+                case PRESS_PULL_UP_TYPE:
+                    if(!digitalRead(this->pin)){
+                        this->pressFlag = true;
+                    }else{
+                        this->pressFlag = false;
+                    }
+                    break;
+
+                case PRESS_PULL_DOWN_TYPE:
+                    if(digitalRead(this->pin)){
+                        this->pressFlag = true;
+                    }else{
+                        this->pressFlag = false;
+                    }
+                    break;
+                default:
+                    return ERR_VALUER_UNCORECT;
+                    break;
+            }
         return ALL_OK;
     }
 
