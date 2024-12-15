@@ -97,9 +97,10 @@
 
             if(press_state && this->changeStateFlag != press_state){
                 this->changeStateFlag = press_state;
-                
-            }else if(){
-
+                this->doPressOnFunction();
+            }else if(!press_state && this->changeStateFlag != press_state){
+                this->changeStateFlag = press_state;
+                this->doPressOffFunction();
             }
 
             return press_state;
@@ -234,6 +235,26 @@
     ErrorList Btn::doPressFunction(){
         if(this->onPress != nullptr){
             onPress();
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
+        }
+    }
+
+
+    ErrorList Btn::doPressOnFunction(){
+        if(this->PressOn != nullptr){
+            PressOn();
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
+        }
+    }
+
+
+    ErrorList Btn::doPressOffFunction(){
+        if(this->PressOff != nullptr){
+            PressOff();
             return ALL_OK;
         }else{
             return ERR_NULL_VALUER;
