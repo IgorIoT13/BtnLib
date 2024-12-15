@@ -169,6 +169,46 @@ public:
     ErrorList removePressFunction();
 
 
+    /**
+     * @brief Add press(on) function
+     * @note if button is press type 
+     * 
+     * @param function it's a void type function what was set as a press function
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList addPressOnFunction(void (*function)(void));
+
+
+    /**
+     * @brief Remove press(on) fuction
+     * @note If press function isn't was add, do nothing.
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList removePressOnFunction();
+
+
+    /**
+     * @brief Add press(off) function
+     * @note if button is press type 
+     * 
+     * @param function it's a void type function what was set as a press function
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList addPressOffFunction(void (*function)(void));
+
+
+    /**
+     * @brief Remove press(off) fuction
+     * @note If press function isn't was add, do nothing.
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList removePressOffFunction();
+
+
 /**
  * ____________________________________________________________________________________________________________________
  * _______________________________ GETTERS and SETTERS ________________________________________________________________

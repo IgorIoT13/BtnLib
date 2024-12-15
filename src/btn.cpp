@@ -38,6 +38,8 @@
         this->pin = pin;
         this->type = type;
         this->onPress = nullptr;
+        this->PressOn = nullptr;
+        this->PressOff = nullptr;
         return ALL_OK;
     }
 
@@ -129,6 +131,41 @@
     ErrorList Btn::removePressFunction(){
         if(this->onPress != nullptr){
             this->onPress = nullptr;
+        }
+        return ALL_OK;
+    }
+
+
+    ErrorList Btn::addPressOnFunction(void (*function)(void)){
+        if(function != nullptr){
+            this->PressOn = function;
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
+        }
+    }
+
+
+    ErrorList Btn::removePressOnFunction(){
+        if(this->PressOn != nullptr){
+            this->PressOn = nullptr;
+        }
+        return ALL_OK;
+    }
+
+    ErrorList Btn::addPressOffFunction(void (*function)(void)){
+        if(function != nullptr){
+            this->PressOff = function;
+            return ALL_OK;
+        }else{
+            return ERR_NULL_VALUER;
+        }
+    }
+
+
+    ErrorList Btn::removePressOffFunction(){
+        if(this->PressOff != nullptr){
+            this->PressOff = nullptr;
         }
         return ALL_OK;
     }
