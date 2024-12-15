@@ -3,15 +3,15 @@
 #include "setting.h"
 
 /**
- * Don`t have interupt now but in future version i add them (I promiss)
+ * Don`t have interupt now but in future version. I will add them (I promiss).
  */
 
 
 
 /**
  * @brief Class to more easy and comfortable use button
- * 
- * @warning Important use begin() after declarate (used constrancts) because him setup all parameters
+ *  
+ * @warning Important use `begin()` after declarate (used constrancts) because him setup all parameters
  * 
  * 
  * @version 1.0
@@ -71,7 +71,7 @@ public:
      * @param delay time what tick wait befor again set flag
      */
     Btn(uint8_t pin, BTN_TYPE type, uint32_t delayTime);
-    
+
 
 
     /**
@@ -130,6 +130,9 @@ public:
     /**
      * @brief Get true if button is active
      * 
+     * @see pressType() - if press button
+     * @see btnType() - if common button
+     * 
      * @return True is button is active and false if not
      */
     bool Press();
@@ -181,6 +184,8 @@ public:
     /**
      * @brief Set button pin
      * 
+     * @param pin it's GPIO pin where connected button
+     * 
      * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList setPin(uint8_t pin);
@@ -188,9 +193,21 @@ public:
     /**
      * @brief Set work type button
      * 
+     * @param type it's work type of button such as PULL_(UP/DOWN)
+     * 
      * @return Error if something was wrong and `ALL_OK` if all good
      */
     ErrorList setType(BTN_TYPE type);
+
+
+    /**
+     * @brief Set delay time for button
+     * 
+     * @param time delay time
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList setDelayTime(uint32_t time);
 
 
 private:
@@ -242,10 +259,19 @@ private:
 
 
     /**
+     * @brief Need to check press button
+     * @note Delay time doesn't work in this button type because tick must all time check button
      * 
+     * @return True if button is active else false 
      */
     bool pressType();
 
+
+    /**
+     * @brief Check simple button 
+     * 
+     * @return True if button is active else false 
+     */
     bool btnType();
 
 

@@ -153,6 +153,8 @@
         }
     }
 
+    ErrorList Btn::setDelayTime(uint32_t time){}
+
 
 
 /**
