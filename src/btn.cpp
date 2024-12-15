@@ -23,7 +23,7 @@
 
     Btn::Btn(uint8_t pin, BTN_TYPE type, uint32_t delayTime){
         this->init(pin, type);
-        //Add delay function
+        this->setDelayTime(delayTime);
     }
 
 
@@ -133,8 +133,8 @@
     ErrorList Btn::setPin(uint8_t pin){
         if(pin != 0 && pin <= MAX_PIN){
             this->pin = pin;
-            this->configPinout();
-            return ALL_OK;
+            ErrorList err = this->configPinout();
+            return err;
         }else if(pin > MAX_PIN){
             return ERR_VALUER_UNCORECT;
         }else{ 
@@ -146,14 +146,17 @@
     ErrorList Btn::setType(BTN_TYPE type){
         if(type != NULL_TYPE){
             this->type = type;
-            this->configPinout();
-            return ALL_OK;
+            ErrorList err = this->configPinout();
+            return err;
         }else{
             return ERR_NULL_VALUER;
         }
     }
 
-    ErrorList Btn::setDelayTime(uint32_t time){}
+    ErrorList Btn::setDelayTime(uint32_t time){
+        this->delayTime = time;
+        return ALL_OK;
+    }
 
 
 
@@ -237,6 +240,26 @@
 
 
     ErrorList Btn::configPinout(){
+        uint8_t pin_mode = 0;
+
+        if(this->type == PULL_UP_TYPE || this->type == PRESS_PULL_UP_TYPE){
+            pin_mode = PULLUP;
+        }else if(this->type == PULL_DOWN_TYPE || this->type == PRESS_PULL_DOWN_TYPE){
+            pin_mode = PULLDOWN;
+        }else{ 
+            return ERR_NULL_VALUER;
+        }
+
+
+        if(pin != 0 && pin <= MAX_PIN){
+            this->pin = pin;
+            pinMode(this->pin, pin_mode);
+            return ALL_OK;
+        }else if(pin > MAX_PIN){
+            return ERR_VALUER_UNCORECT;
+        }else{ 
+            return ERR_NULL_VALUER;
+        }
         return ALL_OK;
     }
 
