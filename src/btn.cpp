@@ -21,6 +21,12 @@
     }
 
 
+    Btn::Btn(uint8_t pin, BTN_TYPE type, uint32_t delayTime){
+        this->init(pin, type);
+        //Add delay function
+    }
+
+
     /**
      * ----------------------------------------------------------------------------------------------------------------
      * --------------------------- Starts fuctions ----------------------------------------------------------------------
@@ -181,7 +187,7 @@
     ErrorList Btn::btn_tick(){
         return ALL_OK;
     }
-    
+
 
     ErrorList Btn::press_tick(){
         return ALL_OK;

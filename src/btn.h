@@ -21,7 +21,7 @@ class Btn{
 private:
     BTN_TYPE type;
     uint8_t pin;
-    uint8_t delayTime;
+    uint32_t delayTime;
     bool pressFlag;
     bool changeStateFlag;
 
@@ -68,8 +68,10 @@ public:
      * 
      * @param pin it's GPIO pin where connected button
      * @param type it's work type of button such as PULL_(UP/DOWN)
+     * @param delay time what tick wait befor again set flag
      */
     Btn(uint8_t pin, BTN_TYPE type, uint32_t delayTime);
+    
 
 
     /**
