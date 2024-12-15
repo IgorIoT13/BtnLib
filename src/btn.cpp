@@ -95,10 +95,12 @@
         if(this->type == PRESS_PULL_UP_TYPE || this->type == PRESS_PULL_DOWN_TYPE){
             bool press_state = this->pressType();
 
-            if(!changeStateFlag && press_state != false){
-                doPressFunction();
+            if(press_state && this->changeStateFlag != press_state){
+                this->changeStateFlag = press_state;
+                
+            }else if(){
+
             }
-            changeStateFlag = press_state;
 
             return press_state;
         }else{

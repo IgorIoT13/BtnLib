@@ -277,6 +277,22 @@ private:
 
 
     /**
+     * @brief Use to safe run press(on) functions
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList doPressOnFunction();
+
+
+    /**
+     * @brief Use to safe run press(off) functions
+     * 
+     * @return Error if something was wrong and `ALL_OK` if all good
+     */
+    ErrorList doPressOffFunction();
+
+
+    /**
      * ----------------------------------------------------------------------------------------------------------------
      * --------------------------- Service Ticks fuctions -------------------------------------------------------------
      * ----------------------------------------------------------------------------------------------------------------
